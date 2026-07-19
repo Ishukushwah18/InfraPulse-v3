@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>{{ app_name }}</title>
+
+<meta http-equiv="refresh" content="10">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+
+--bg:#0b1220;
+--panel:#121b2d;
+--panel-hover:#18243b;
+--border:#24334f;
+
+--text:#f3f4f6;
+--muted:#94a3b8;
+
+--blue:#3b82f6;
+--green:#22c55e;
+--red:#ef4444;
+--yellow:#f59e0b;
+
+--green-bg:rgba(34,197,94,.15);
+--red-bg:rgba(239,68,68,.15);
+--yellow-bg:rgba(245,158,11,.15);
+
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+background:radial-gradient(circle at top,#142548 0%,#0b1220 55%);
+font-family:Inter,sans-serif;
+color:var(--text);
+
+}
+
+.container{
+
+max-width:1200px;
+margin:auto;
+padding:40px 25px;
+
+}
+
+.header{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+margin-bottom:35px;
+
+}
+
+.brand{
+
+display:flex;
+align-items:center;
+gap:15px;
+
+}
+
+.pulse{
+
+width:14px;
+height:14px;
+border-radius:50%;
+background:var(--green);
+
+animation:pulse 2s infinite;
+
+}
+
+@keyframes pulse{
+
+0%{
+box-shadow:0 0 0 0 rgba(34,197,94,.7);
+}
+
+70%{
+box-shadow:0 0 0 16px rgba(34,197,94,0);
+}
+
+100%{
+box-shadow:0 0 0 0 rgba(34,197,94,0);
+}
+
+}
+
+h1{
+
+font-size:30px;
+
+}
+
+.subtitle{
+
+color:var(--muted);
+margin-top:5px;
+font-size:14px;
+
+}
+
+.version{
+
+border:1px solid var(--border);
+padding:10px 18px;
+border-radius:30px;
+font-family:JetBrains Mono,monospace;
+color:var(--muted);
+
+}
+
+.cards{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+margin-bottom:30px;
+
+}
+
+.card{
+
+background:var(--panel);
+border:1px solid var(--border);
+border-radius:15px;
+padding:22px;
+transition:.3s;
+
+}
+
+.card:hover{
+
+background:var(--panel-hover);
+
+}
+
+.card-title{
+
+color:var(--muted);
+font-size:12px;
+text-transform:uppercase;
+letter-spacing:1px;
+
+}
+
+.card-value{
+
+margin-top:10px;
+font-size:34px;
+font-weight:bold;
+
+}
+
+.blue{
+
+color:var(--blue);
+
+}
+
+.green{
+
+color:var(--green);
+
+}
+
+.table-box{
+
+background:var(--panel);
+border:1px solid var(--border);
+border-radius:15px;
+overflow:hidden;
+
+}
+
+.table-header{
+
+padding:20px;
+border-bottom:1px solid var(--border);
+font-size:17px;
+font-weight:600;
+
+}
+
+table{
+
+width:100%;
+border-collapse:collapse;
+
+}
+
+th{
+
+text-align:left;
+padding:16px 20px;
+font-size:12px;
+letter-spacing:1px;
+color:var(--muted);
+text-transform:uppercase;
+border-bottom:1px solid var(--border);
+
+}
+
+td{
+
+padding:18px 20px;
+border-bottom:1px solid var(--border);
+
+}
+
+tbody tr:hover{
+
+background:var(--panel-hover);
+
+}
+
+.device{
+
+font-weight:600;
+
+}
+
+.host{
+
+font-family:JetBrains Mono,monospace;
+color:var(--muted);
+
+}
+
+.badge{
+
+padding:7px 14px;
+border-radius:30px;
+font-size:12px;
+font-weight:700;
+font-family:JetBrains Mono,monospace;
+
+}
+
+.ok{
+
+background:var(--green-bg);
+color:var(--green);
+
+}
+
+.down{
+
+background:var(--red-bg);
+color:var(--red);
+
+}
+
+.warn{
+
+background:var(--yellow-bg);
+color:var(--yellow);
+
+}
+
+.footer{
+
+margin-top:35px;
+text-align:center;
+color:var(--muted);
+font-size:13px;
+line-height:28px;
+
+}
+
+.footer strong{
+
+color:white;
+
+}
+
+@media(max-width:768px){
+
+.header{
+
+flex-direction:column;
+align-items:flex-start;
+gap:20px;
+
+}
+
+table,
+thead,
+tbody,
+tr,
+td{
+
+display:block;
+
+}
+
+thead{
+
+display:none;
+
+}
+
+tr{
+
+padding:15px;
+border-bottom:1px solid var(--border);
+
+}
+
+td{
+
+border:none;
+padding:6px 0;
+
+}
+
+td::before{
+
+content:attr(data-label);
+display:block;
+font-size:11px;
+text-transform:uppercase;
+color:var(--muted);
+margin-bottom:3px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+
+<div class="brand">
+
+<div class="pulse"></div>
+
+<div>
+
+<h1>❤️ {{ app_name }}</h1>
+
+<div class="subtitle">
+
+Containerized Network Monitoring Dashboard
+
+</div>
+
+</div>
+
+</div>
+
+<div class="version">
+
+v{{ version }}
+
+</div>
+
+</div>
+
+<div class="cards">
+
+<div class="card">
+
+<div class="card-title">
+
+Total Hosts
+
+</div>
+
+<div class="card-value">
+
+{{ targets|length }}
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="card-title">
+
+System Status
+
+</div>
+
+<div class="card-value green">
+
+ONLINE
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="card-title">
+
+Auto Refresh
+
+</div>
+
+<div class="card-value blue">
+
+10s
+
+</div>
+
+</div>
+
+</div>
+
+<div class="table-box">
+
+<div class="table-header">
+
+📡 Live Device Monitoring
+
+</div>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Device</th>
+
+<th>Host</th>
+
+<th>Ping Status</th>
+
+<th>Port Status</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for target in targets %}
+
+<tr>
+
+<td class="device" data-label="Device">
+
+{{ target.name }}
+
+</td>
+
+<td class="host" data-label="Host">
+
+{{ target.host }}
+
+</td>
+
+<td data-label="Ping">
+
+{% if "UP" in target.ping %}
+
+<span class="badge ok">{{ target.ping }}</span>
+
+{% elif "ERROR" in target.ping %}
+
+<span class="badge warn">{{ target.ping }}</span>
+
+{% else %}
+
+<span class="badge down">{{ target.ping }}</span>
+
+{% endif %}
+
+</td>
+
+<td data-label="Port">
+
+{% if "OPEN" in target.port_status %}
+
+<span class="badge ok">{{ target.port_status }}</span>
+
+{% elif "ERROR" in target.port_status %}
+
+<span class="badge warn">{{ target.port_status }}</span>
+
+{% else %}
+
+<span class="badge down">{{ target.port_status }}</span>
+
+{% endif %}
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+<div class="footer">
+
+<strong>InfraPulse v3</strong><br>
+
+Built using Docker • Flask • Nginx • Docker Compose<br>
+
+Last Updated : {{ last_updated }}
+
+</div>
+
+</div>
+
+</body>
+
+</html>

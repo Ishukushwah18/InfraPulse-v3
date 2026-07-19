@@ -1,0 +1,40 @@
+services:
+
+  app:
+    build: .
+    image: infrapulse-v3-app
+    container_name: infrapulse-app
+
+    restart: unless-stopped
+
+    env_file:
+      - .env
+
+    expose:
+      - "5000"
+
+    networks:
+      - infrapulse-network
+
+  nginx:
+    image: nginx:latest
+    container_name: infrapulse-nginx
+
+    restart: unless-stopped
+
+    ports:
+      - "80:80"
+
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+
+    depends_on:
+      app:
+        condition: service_started
+
+    networks:
+      - infrapulse-network
+
+networks:
+  infrapulse-network:
+    driver: bridge
