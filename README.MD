@@ -6,9 +6,10 @@ InfraPulse continuously monitors network devices using Ping and TCP Port checks 
 
 ---
 
-📸 Dashboard
+# 📸 Dashboard
 
 ![Dashboard](screenshots/dashboard.png)
+
 
 ---
 
